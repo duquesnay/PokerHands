@@ -1,6 +1,6 @@
-require './card'
-require './hand'
-require './result'
+require_relative 'card'
+require_relative 'hand'
+require_relative 'results'
 
 class Game
 
@@ -9,7 +9,7 @@ class Game
     white_hand = Hand.to_hand white_hand_representation
     black_hand = Hand.to_hand black_hand_representation
 
-    result = white_hand.compare( black_hand)
+    result = white_hand.compare( black_hand )
     result.print_result
   end
 

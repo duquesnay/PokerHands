@@ -1,7 +1,7 @@
-require "./card"
-require "./result"
-require "./pair"
-require "./hands_comparator"
+require_relative "card"
+require_relative "results"
+require_relative "pair"
+require_relative "hands_comparator"
 
 class Hand < Deck
 
@@ -22,6 +22,10 @@ class Hand < Deck
 
   def tell_first_pair(visitor)
     visitor.gather_value pick_first_pair
+  end
+
+  def tell_higher_cards visitor
+    visitor.gather_value self.sort.reverse
   end
 
   def self.to_hand hand_representation

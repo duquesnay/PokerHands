@@ -1,4 +1,4 @@
-require "./comparator"
+require_relative "comparator"
 
 class Value
   include Comparable

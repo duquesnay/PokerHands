@@ -1,5 +1,5 @@
-require "./value"
-require "./color"
+require_relative "value"
+require_relative "color"
 
 class Card
   include Comparable

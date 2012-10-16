@@ -1,5 +1,5 @@
-require './deck'
-require "./comparator"
+require_relative 'deck'
+require_relative "comparator"
 
 class Pair
   include Comparable

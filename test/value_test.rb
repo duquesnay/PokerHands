@@ -1,5 +1,5 @@
 require "test/unit"
-require "./value"
+require_relative "../lib/value"
 
 class ValueTest  < Test::Unit::TestCase
 

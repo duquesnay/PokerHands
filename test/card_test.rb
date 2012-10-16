@@ -1,6 +1,6 @@
 require "test/unit"
-require "./card"
-require "./value"
+require_relative "../lib/card"
+require_relative "../lib/value"
 
 class CardTest < Test::Unit::TestCase
 

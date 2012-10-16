@@ -1,7 +1,8 @@
 require "test/unit"
-require "./pair"
-require "./hands_comparator"
-require "./hand"
+require_relative "../lib/pair"
+require_relative "../lib/hands_comparator"
+require_relative "../lib/hands_pair_comparator"
+require_relative "../lib/hand"
 
 class PairTest < Test::Unit::TestCase
 
@@ -56,6 +57,19 @@ class PairTest < Test::Unit::TestCase
 
     #T
     assert_match /^black/, result.print_result
+  end
+
+  def test_should_name_a_winner_on_kicker
+    #G
+    pair_of_4_kicker_king_input="kh 2h 4s 4d 5s"
+    pair_of_4_kicker_queen_input="qs 2s 4h 4h 5h"
+    pair_of_4_kicker_king = Hand.to_hand pair_of_4_kicker_king_input
+    pair_of_4_kicker_queen = Hand.to_hand pair_of_4_kicker_queen_input
+    #W
+    result = HandsPairComparator.compare_objects_by_value pair_of_4_kicker_king, pair_of_4_kicker_queen
+
+    #T
+    assert_not_nil result, "no result after comparison"
   end
 
   def test_should_name_white_winner_on_second_pair_bigger
