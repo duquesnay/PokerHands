@@ -2,7 +2,6 @@ require_relative "value"
 require_relative "color"
 
 class Card
-  include Comparable
   @value
   @color
 
@@ -11,16 +10,8 @@ class Card
     @value = Value.new value
   end
 
-  def tell_value(gatherer)
-    gatherer.gather_value @value
-  end
-
   def self::to_card(representation)
     return Card.new representation[0], representation[1]
-  end
-
-  def <=> other_card
-     compare_strength other_card
   end
 
   def print_color
@@ -35,23 +26,27 @@ class Card
     print
   end
 
+  def to_value
+    @value.clone
+  end
+
   def as_strong_as(card)
     return (compare_strength card) == 0
   end
 
   def stronger_than(card)
-    return self > card
+    return (compare_strength card) > 0
+  end
+
+  def weaker_than (challenger_card)
+    return (compare_strength challenger_card) < 0
   end
 
   def compare_strength(card)
-    Comparator.compare_objects_by_value self, card
+    -card.compare_to_value(@value)
   end
 
-  def weaker_than (card)
-    return (compare_strength card) < 0
-  end
-
-  def compare_to_v(v)
+  def compare_to_value(v)
     @value.compare_to_v(v)
   end
 

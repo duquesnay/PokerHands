@@ -1,6 +1,6 @@
 class EqualityResult
 
-  HAND_MATCHES_RESULT_MESSAGE = "hand matches - equality"
+  HAND_MATCHES_RESULT_MESSAGE = "deck matches - equality"
 
   def print_result
     return HAND_MATCHES_RESULT_MESSAGE
@@ -9,37 +9,45 @@ class EqualityResult
 end
 
 class WinnerResult
-  def initialize name
-    @winner_name = name
-  end
-  def print_result
-    "#{@winner_name} wins"
-  end
-end
-
-class HigherCardResult < WinnerResult
-
-  def initialize(hand_owner_name, decisive_card)
-    super hand_owner_name
-    @decisive_card = decisive_card
+  def initialize winner, resolution
+    @winner, @resolution = winner, resolution
   end
 
   def print_result
-    super+" - with higher card : #{@decisive_card.print_value}"
+    resolution_message = @resolution.print_resolution
+    winner_name= @winner.print_name
+    "#{winner_name} wins - #{resolution_message}"
   end
-
 end
 
-class PairResult < WinnerResult
+class PairResult
   @pair
-  def initialize winner_name, pair
-    super winner_name
-    @pair = pair
+
+  def initialize winner_pair
+    @pair = winner_pair
   end
+
   def print_pair
     @pair.print
   end
-  def print_result
-    super+" - with #{print_pair}"
+
+  def print_resolution
+    "with #{print_pair}"
+  end
+end
+
+class KickerResolution
+  @kicker
+
+  def initialize kicker_card
+    @kicker = kicker_card
+  end
+
+  def print_kicker
+    @kicker.print
+  end
+
+  def print_resolution
+    "by kicker as #{print_kicker}"
   end
 end

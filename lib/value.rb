@@ -1,5 +1,3 @@
-require_relative "comparator"
-
 class Value
   include Comparable
 
@@ -32,7 +30,7 @@ class Value
   end
 
   def <=> another_value
-    SignComparator.compare_objects_by_value self, another_value
+    Value::ALL_VALUES.index(sign) - Value::ALL_VALUES.index(another_value.sign)
   end
 
   def tell_sign(visitor)
@@ -59,13 +57,10 @@ class Value
     "#{name}#{plural}"
   end
 
-  class SignComparator < Comparator
-    def visit value
-      value.tell_sign self
-    end
-    def compare
-      Value::ALL_VALUES.index(left_value) - Value::ALL_VALUES.index(right_value)
-    end
+  protected
+  def sign
+    @sign
   end
 end
+
 

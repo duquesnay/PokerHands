@@ -40,7 +40,7 @@ class CardTest < Test::Unit::TestCase
       big_card = Card.to_card(big_sign)
       low_card = Card.to_card(lower_sign)
       #T
-      assert(big_card > low_card, "found card #{big_card} < #{low_card}")
+      assert big_card.stronger_than(low_card), "found card #{big_card} < #{low_card}"
     end
 
   end
@@ -57,7 +57,7 @@ class CardTest < Test::Unit::TestCase
       big_card = Card.to_card(big_sign)
       low_card = Card.to_card(lower_sign)
       #T
-      assert(low_card < big_card, "found card #{low_card} > #{big_card}")
+      assert low_card.compare_strength(big_card), "found card #{low_card} > #{big_card}"
     end
 
   end
@@ -66,11 +66,10 @@ class CardTest < Test::Unit::TestCase
     #G
     big_card = Card.to_card("3h")
     low_card = Card.to_card("3s")
+    assert(!low_card.weaker_than(big_card), "found card #{low_card} < #{big_card}")
+    assert(!low_card.stronger_than(big_card), "found card #{low_card} > #{big_card}")
     #T
-    assert(! low_card.weaker_than(big_card), "found card #{low_card} < #{big_card}")
-    assert(! low_card.stronger_than(big_card), "found card #{low_card} > #{big_card}")
-
-    assert(low_card.as_strong_as( big_card ), "found card #{low_card} != #{big_card}")
+    assert(low_card.as_strong_as(big_card), "found card #{low_card} != #{big_card}")
   end
 
 
