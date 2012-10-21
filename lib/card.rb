@@ -54,8 +54,4 @@ class Card
     @value.print_as_singular
   end
 
-  def print_values
-    @value.print_as_plural
-  end
-
 end

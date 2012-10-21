@@ -133,6 +133,4 @@ class PairResolutionTest < Test::Unit::TestCase
     assert_match /^by kicker as a king$/, result.print_resolution
   end
 
-
-
 end

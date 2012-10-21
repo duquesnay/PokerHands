@@ -15,21 +15,8 @@ class CardStack
     expected_result
   end
 
-  def to_s
-    @cards.to_s
-  end
-
   def each
     @cards.each { |card| yield card }
-  end
-
-  def self.to_deck deck_representation
-    symbols = deck_representation.split(' ')
-
-    cards = symbols.collect { |symbol_card|
-      Card.to_card(symbol_card)
-    }
-    Deck.new cards
   end
 
   def -(deck_to_substract)

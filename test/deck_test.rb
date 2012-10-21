@@ -40,4 +40,14 @@ class DeckTest < Test::Unit::TestCase
     assert_instance_of HighCard, hand_found
   end
 
+  def test_should_converts_back_to_a_string_representation
+    #G
+    unsorted_deck_representation = "ah 4h 5h 3h kh 6h"
+    deck = Deck.to_deck unsorted_deck_representation
+    #W
+    deck_back_representation = deck.to_s
+    #T
+    assert_equal "ah kh 6h 5h 4h 3h", deck_back_representation
+  end
+
 end
