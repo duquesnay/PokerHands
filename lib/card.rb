@@ -19,7 +19,7 @@ class Card
   end
 
   def print
-    "#{@value}#{@color}"
+    "#@value#@color"
   end
 
   def to_s
@@ -31,15 +31,15 @@ class Card
   end
 
   def as_strong_as(card)
-    return (compare_strength card) == 0
+    (compare_strength card) == 0
   end
 
   def stronger_than(card)
-    return (compare_strength card) > 0
+    (compare_strength card) > 0
   end
 
   def weaker_than (challenger_card)
-    return (compare_strength challenger_card) < 0
+    (compare_strength challenger_card) < 0
   end
 
   def compare_strength(card)
@@ -51,11 +51,11 @@ class Card
   end
 
   def print_value
-    @value.name_one
+    @value.print_as_singular
   end
 
   def print_values
-    @value.name_many
+    @value.print_as_plural
   end
 
 end

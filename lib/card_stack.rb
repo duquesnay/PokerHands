@@ -12,7 +12,7 @@ class CardStack
   def [](stuff)
     expected_result = @cards[stuff]
     return Deck.new(expected_result) if expected_result.instance_of? Array
-    return expected_result
+    expected_result
   end
 
   def to_s
@@ -20,7 +20,7 @@ class CardStack
   end
 
   def each
-    @cards.each { |card| yield }
+    @cards.each { |card| yield card }
   end
 
   def self.to_deck deck_representation
@@ -32,9 +32,9 @@ class CardStack
     Deck.new cards
   end
 
-  def -(deck)
+  def -(deck_to_substract)
     remaining_cards = @cards.clone
-    cards_to_remove = deck.each{ |card_to_remove| remaining_cards.delete card_to_remove}
+    deck_to_substract.each{ |card_to_remove| remaining_cards.delete card_to_remove}
     Deck.new remaining_cards
   end
 

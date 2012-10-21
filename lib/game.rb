@@ -8,17 +8,17 @@ class Game
 
   EQUALITY_RESULT = EqualityResult.new
 
-  def challenge(left_deck_representation, right_deck_representation)
+  def challenge(left_deck_input, right_deck_input)
 
-    register_white_from(left_deck_representation)
-    register_black_from(right_deck_representation)
+    register_white_from(left_deck_input)
+    register_black_from(right_deck_input)
     result = resolve_game()
     result.print_result
   end
 
   def resolve_game
     winning_resolution = search_winner_resolution()
-    result = winning_resolution || EQUALITY_RESULT
+    winning_resolution || EQUALITY_RESULT
   end
 
   def search_winner_resolution

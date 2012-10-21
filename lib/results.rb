@@ -3,13 +3,13 @@ class EqualityResult
   HAND_MATCHES_RESULT_MESSAGE = "deck matches - equality"
 
   def print_result
-    return HAND_MATCHES_RESULT_MESSAGE
+    HAND_MATCHES_RESULT_MESSAGE
   end
 
 end
 
 class WinnerResult
-  def initialize winner, resolution
+  def initialize (winner, resolution)
     @winner, @resolution = winner, resolution
   end
 
@@ -23,7 +23,7 @@ end
 class PairResult
   @pair
 
-  def initialize winner_pair
+  def initialize (winner_pair)
     @pair = winner_pair
   end
 
@@ -39,12 +39,12 @@ end
 class KickerResolution
   @kicker
 
-  def initialize kicker_card
+  def initialize (kicker_card)
     @kicker = kicker_card
   end
 
   def print_kicker
-    @kicker.print
+    @kicker.print_value
   end
 
   def print_resolution
@@ -56,12 +56,12 @@ end
 class HighCardResolution
   @high_card
 
-  def initialize kicker_card
-    @kicker = kicker_card
+  def initialize (winning_card)
+    @high_card = winning_card
   end
 
   def print_high_card
-    @kicker.print_value
+    @high_card.print_value
   end
 
   def print_resolution

@@ -4,12 +4,17 @@ class Value
   ALL_VALUES = "23456789tjqka"
   @sign
 
+  ACE_SYMBOL = "a"
+  KING_SYMBOL = "k"
+  QUEEN_SYMBOL = "q"
+  JACK_SYMBOL = "j"
+  TEN_SYMBOL = "t"
   NAMES = {
-      "a" => "ace",
-      "k" => "king",
-      "q" => "queen",
-      "j" => "jack",
-      "t" => "10",
+      ACE_SYMBOL => "ace",
+      KING_SYMBOL => "king",
+      QUEEN_SYMBOL => "queen",
+      JACK_SYMBOL => "jack",
+      "10" => "10",
       "9" => "9",
       "8" => "8",
       "7" => "7",
@@ -29,12 +34,8 @@ class Value
     @sign
   end
 
-  def <=> another_value
+  def <=> (another_value)
     Value::ALL_VALUES.index(sign) - Value::ALL_VALUES.index(another_value.sign)
-  end
-
-  def tell_sign(visitor)
-    visitor.gather_value @sign
   end
 
   def compare_to_v(v)
@@ -45,13 +46,13 @@ class Value
     !ALL_VALUES.include? value
   end
 
-  def name_one
+  def print_as_singular
     particle = (@sign == 'a' ? 'an' : 'a')
     name = NAMES[@sign]
     "#{particle} #{name}"
   end
 
-  def name_many
+  def print_as_plural
     plural = (@sign =~ /j|q|k|a/ ? 's' : '')
     name = NAMES[@sign]
     "#{name}#{plural}"
