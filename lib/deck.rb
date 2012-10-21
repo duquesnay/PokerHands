@@ -6,13 +6,13 @@ require_relative "high_card"
 
 class Deck < CardStack
 
-  def search_discriminator challenger
+  def search_discriminator (challenger)
     discriminator_index = (0..(@cards.length-1)).find { |i|
       card = @cards[i]
       challenger_card = challenger[i]
       card.stronger_than challenger_card
     }
-    return @cards[discriminator_index] if discriminator_index
+    @cards[discriminator_index] if discriminator_index
   end
 
   def search_first_pair
@@ -25,18 +25,16 @@ class Deck < CardStack
       end
       previous = current_card
     }
-    return
   end
 
   def generate_pair_from(gemel_card_1, gemel_card_2)
     pair_cards = Deck.new [gemel_card_2, gemel_card_1]
     kickers = self - pair_cards
-    pair = Pair.new pair_cards, kickers
+    Pair.new pair_cards, kickers
   end
 
   def search_best_hand
-    best_hand = search_first_pair || to_high_card
-    return best_hand
+    search_first_pair || to_high_card
   end
 
   def to_high_card
