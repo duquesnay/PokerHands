@@ -61,10 +61,10 @@ class HighCardResolution
   end
 
   def print_high_card
-    @kicker.print
+    @kicker.print_value
   end
 
   def print_resolution
-    "by kicker as #{print_high_card}"
+    "with high card : #{print_high_card}"
   end
 end

@@ -12,15 +12,6 @@ class DeckTest < Test::Unit::TestCase
     assert higher_pair
   end
 
-  def _test_pick_a_pair_get_proper_kickers
-    #G
-    black=Pair.new Deck.to_deck"kh 2h 3s 4d 5s"
-    #W
-    higher_pair = black.search_best_hand
-    #T
-    assert_equals "kh 4d 2h", higher_pair.print_kickers
-  end
-
   def test_best_hand_found_if_no_pair
     #G
     black=Deck.to_deck "kh 2h 3s 4d 5s"

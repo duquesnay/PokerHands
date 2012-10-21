@@ -1,7 +1,7 @@
 require "test/unit"
 require_relative '../lib/game'
 
-class HighCardResolutionTest #< Test::Unit::TestCase
+class HighCardResolutionTest < Test::Unit::TestCase
 
   def setup
     @game = Game.new
@@ -31,7 +31,7 @@ class HighCardResolutionTest #< Test::Unit::TestCase
     assert_match( /white wins/, answer);
   end
 
-  def test_claim_winner_card_on_bigger_card
+  def test_high_card_print_properly
     #G
     white="kh ah 3s 2d 5s"
     black="ks 2s 4h 3h 5h"

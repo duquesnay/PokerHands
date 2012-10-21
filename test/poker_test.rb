@@ -24,7 +24,7 @@ class PokerTest < Test::Unit::TestCase
     end
   end
 
-  def _test_should_name_white_winner_when_first_wins
+  def test_should_name_white_winner_when_first_wins
     #G
     pair_of_4_string="kh 2h 4s 4d 5s"
     pair_of_3_string="ks 2s 3h 3h 5h"
@@ -36,7 +36,7 @@ class PokerTest < Test::Unit::TestCase
     assert_match /^white/, result
   end
 
-  def _test_should_name_black_winner_when_second_wins
+  def test_should_name_black_winner_when_second_wins
     #G
     pair_of_3_king_string="ks 2s 3h 3h 5h"
     pair_of_4_string="kh 2h 4s 4d 5s"
