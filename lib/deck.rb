@@ -25,6 +25,7 @@ class Deck < CardStack
       end
       previous = current_card
     }
+    return
   end
 
   def generate_pair_from(gemel_card_1, gemel_card_2)
