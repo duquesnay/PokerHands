@@ -60,7 +60,7 @@ class PokerTest < Test::Unit::TestCase
     assert_match /equality/, result
   end
 
-  def _test_on_high_card_when_no_pair_white_wins
+  def test_on_high_card_when_no_pair_white_wins
     #G
     big_high_card_hand="ks 3s 2h 4h 5h"
     low_high_card_hand= "qs 3s 2h 4h 5h"
@@ -72,7 +72,7 @@ class PokerTest < Test::Unit::TestCase
     assert_match( /white wins/, answer);
   end
 
-  def _test_on_higher_card_when_no_pair_black_wins
+  def test_on_higher_card_when_no_pair_black_wins
     #G
     big_high_card_hand="ks 3s 2h 4h 5h"
     low_high_card_hand= "qs 3s 2h 4h 5h"

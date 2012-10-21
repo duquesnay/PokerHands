@@ -15,7 +15,7 @@ class PairResolutionTest < Test::Unit::TestCase
     pair_of_4 = Pair.new big_cards
     pair_of_3 = Pair.new low_cards
     #W
-    result = pair_of_4.resolve_against pair_of_3
+    result = pair_of_4.resolve_against_pair pair_of_3
 
     #T
     assert_not_nil result
@@ -28,7 +28,7 @@ class PairResolutionTest < Test::Unit::TestCase
     pair_of_4 = Pair.new big_cards
     pair_of_3 = Pair.new low_cards
     #W
-    result = pair_of_4.resolve_against pair_of_3
+    result = pair_of_4.resolve_against_pair pair_of_3
 
     #T
     assert_match /4/, result.print_resolution
@@ -42,7 +42,7 @@ class PairResolutionTest < Test::Unit::TestCase
     pair_of_4 = Pair.new big_cards
     pair_of_3 = Pair.new low_cards
     #W
-    result = pair_of_3.resolve_against pair_of_4
+    result = pair_of_3.resolve_against_pair pair_of_4
 
     #T
     assert_nil result
@@ -55,7 +55,7 @@ class PairResolutionTest < Test::Unit::TestCase
 
     pair_of_4 = Pair.new big_cards
     #W
-    result = pair_of_4.resolve_against pair_of_4
+    result = pair_of_4.resolve_against_pair pair_of_4
 
     #T
     assert_nil result
@@ -71,7 +71,7 @@ class PairResolutionTest < Test::Unit::TestCase
     hand_of_big_kicker = Pair.new pair_cards, bigger_kicker
     hand_of_lower_kicker = Pair.new pair_cards, lower_kicker
     #W
-    result = hand_of_big_kicker.resolve_against hand_of_lower_kicker
+    result = hand_of_big_kicker.resolve_against_pair hand_of_lower_kicker
 
     #T
     assert result
@@ -86,7 +86,7 @@ class PairResolutionTest < Test::Unit::TestCase
     hand_of_big_kicker = Pair.new pair_cards, bigger_kicker
     hand_of_lower_kicker = Pair.new pair_cards, lower_kicker
     #W
-    result = hand_of_lower_kicker.resolve_against hand_of_big_kicker
+    result = hand_of_lower_kicker.resolve_against_pair hand_of_big_kicker
 
     #T
     assert_nil result
@@ -100,7 +100,7 @@ class PairResolutionTest < Test::Unit::TestCase
     a_hand = Pair.new pair, kicker
     same_hand = Pair.new pair, kicker
     #W
-    result = a_hand.resolve_against same_hand
+    result = a_hand.resolve_against_pair same_hand
 
     #T
     assert_nil result

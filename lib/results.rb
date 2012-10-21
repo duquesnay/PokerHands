@@ -50,4 +50,21 @@ class KickerResolution
   def print_resolution
     "by kicker as #{print_kicker}"
   end
+
+end
+
+class HighCardResolution
+  @high_card
+
+  def initialize kicker_card
+    @kicker = kicker_card
+  end
+
+  def print_high_card
+    @kicker.print
+  end
+
+  def print_resolution
+    "by kicker as #{print_high_card}"
+  end
 end

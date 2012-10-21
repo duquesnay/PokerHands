@@ -20,8 +20,12 @@ class Player
   def challenge challenged_player
     my_hand = search_best_hand
     challenging_hand = challenged_player.search_best_hand
-    challenge_result = my_hand.challenge challenging_hand
-    return WinnerResult.new( self, challenge_result ) if challenge_result
+    resolution = my_hand.resolve_against challenging_hand
+    return generate_winner_result(resolution) if resolution
+  end
+
+  def generate_winner_result(resolution)
+    WinnerResult.new(self, resolution)
   end
 
   protected

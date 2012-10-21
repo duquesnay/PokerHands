@@ -1,24 +1,19 @@
 require_relative 'deck'
+require_relative "hand"
 
-class Pair
+class Pair < Hand
 
   def initialize (paired_cards, kickers = Deck.new)
     @value = paired_cards[0].to_value
     @kickers = kickers
   end
 
-  #def <=> another_pair
-  #  return 1 if !another_pair
-  #  return 1 if !another_pair.is_a? Pair
-  #  return -another_pair.compare_to_value(@value)
-  #end
-
-  def challenge challenger
-    return PairResult.new self if higher_hand_type(challenger)
-    return resolve_against challenger
+  def resolve_against challenger
+    return PairResult.new self if higher_hand_than?(challenger)
+    return resolve_against_pair challenger
   end
 
-  def resolve_against challenging_pair
+  def resolve_against_pair challenging_pair
     value_resolution = compare_by_value challenging_pair
     return PairResult.new(self) if value_resolution > 0
     return resolve_by_kickers challenging_pair if value_resolution == 0
@@ -31,7 +26,7 @@ class Pair
   def resolve_by_kickers challenging_pair
     challenging_kickers = challenging_pair.kickers
 
-    my_kicker = @kickers.discriminating_card_against? challenging_kickers
+    my_kicker = @kickers.search_discriminator challenging_kickers
 
     return KickerResolution.new(my_kicker) if my_kicker
   end
@@ -54,7 +49,7 @@ class Pair
   end
 
   private
-  def higher_hand_type(challenger)
+  def higher_hand_than?(challenger)
     !challenger.instance_of? Pair
   end
 

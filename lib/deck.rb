@@ -2,19 +2,11 @@ require_relative "card"
 require_relative "results"
 require_relative "pair"
 require_relative "card_stack"
+require_relative "high_card"
 
 class Deck < CardStack
-  def extract_highest_card
-    @cards.first
-  end
 
-  def extract_lower_deck
-    cards_subset = @cards[1..-1]
-    return Deck.new cards_subset if cards_subset
-    return Deck.new
-  end
-
-  def discriminating_card_against? challenger
+  def search_discriminator challenger
     discriminator_index = (0..(@cards.length-1)).find { |i|
       card = @cards[i]
       challenger_card = challenger[i]
@@ -23,37 +15,36 @@ class Deck < CardStack
     return @cards[discriminator_index] if discriminator_index
   end
 
-  def count_card
-    @cards.length
-  end
-
   def search_first_pair
+    return if count_card < 2
     previous = @cards[0]
     @cards[1..-1].each { |current_card|
       if current_card.as_strong_as previous
-        pair_cards = Deck.new [previous, current_card]
-        kickers = self - pair_cards
-        return Pair.new pair_cards, kickers
+        pair = generate_pair_from(current_card, previous)
+        return pair
       end
       previous = current_card
     }
     return
   end
 
-  def search_best_hand
-    return if count_card < 2
+  def generate_pair_from(gemel_card_1, gemel_card_2)
+    pair_cards = Deck.new [gemel_card_2, gemel_card_1]
+    kickers = self - pair_cards
+    pair = Pair.new pair_cards, kickers
+  end
 
-    best_hand = search_first_pair || self
+  def search_best_hand
+    best_hand = search_first_pair || to_high_card
     return best_hand
+  end
+
+  def to_high_card
+    HighCard.new self
   end
 
   def print
     to_s
-  end
-
-  protected
-  def to_cards_a
-    @cards.clone
   end
 
 end

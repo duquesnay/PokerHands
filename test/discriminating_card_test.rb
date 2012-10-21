@@ -10,7 +10,7 @@ class DiscriminatingCardTest < Test::Unit::TestCase
     black_deck = Deck.to_deck("5h")
 
     #W
-    result = white_deck.discriminating_card_against? black_deck
+    result = white_deck.search_discriminator black_deck
 
     #T
     assert result
@@ -22,7 +22,7 @@ class DiscriminatingCardTest < Test::Unit::TestCase
     black_deck = Deck.to_deck("5h")
 
     #W
-    result = white_deck.discriminating_card_against? black_deck
+    result = white_deck.search_discriminator black_deck
 
     #T
     assert_equal "qs", result.to_s
@@ -34,7 +34,7 @@ class DiscriminatingCardTest < Test::Unit::TestCase
     black_deck = Deck.to_deck("ks 5h")
 
     #W
-    result = white_deck.discriminating_card_against? black_deck
+    result = white_deck.search_discriminator black_deck
 
     #T
     assert_equal "qs", result.to_s

@@ -12,24 +12,6 @@ class DeckTest < Test::Unit::TestCase
     assert higher_pair
   end
 
-  def test_extract_lower_deck
-    #G
-    black=Deck.to_deck "kh 2h 4s 4d 5s"
-    #W
-    result = black.extract_lower_deck
-    #T
-    assert_equal "[5s, 4s, 4d, 2h]", result.to_s
-  end
-
-  def test_extract_lower_deck_remains_empty_on_empty_deck
-    #G
-    black=Deck.new
-    #W
-    result = black.extract_lower_deck
-    #T
-    assert_equal "[]", result.to_s
-  end
-
   def _test_pick_a_pair_get_proper_kickers
     #G
     black=Pair.new Deck.to_deck"kh 2h 3s 4d 5s"
@@ -55,6 +37,15 @@ class DeckTest < Test::Unit::TestCase
     hand_found = black.search_best_hand
     #T
     assert_false hand_found.instance_of? Pair
+  end
+
+  def test_should_find_high_card_as_best_hand
+    #G
+    black=Deck.to_deck "kh"
+    #W
+    hand_found = black.search_best_hand
+    #T
+    assert_instance_of HighCard, hand_found
   end
 
 end

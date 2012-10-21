@@ -9,22 +9,6 @@ class CardStack
     ensure_order
   end
 
-  def <<(card)
-    @cards << card
-    ensure_order
-  end
-
-  def []=(y, value)
-    @cards[y]=value
-    ensure_order
-  end
-
-  def -(deck)
-    cards_to_remove = deck.to_cards_a
-    remaining_cards = @cards - cards_to_remove
-    Deck.new remaining_cards
-  end
-
   def [](stuff)
     expected_result = @cards[stuff]
     return Deck.new(expected_result) if expected_result.instance_of? Array
@@ -48,11 +32,20 @@ class CardStack
     Deck.new cards
   end
 
+  def -(deck)
+    remaining_cards = @cards.clone
+    cards_to_remove = deck.each{ |card_to_remove| remaining_cards.delete card_to_remove}
+    Deck.new remaining_cards
+  end
+
   private
   def ensure_order
     @cards.sort!{ |a,b| a.compare_strength b }
     @cards.reverse!
   end
 
+  def count_card
+    @cards.length
+  end
 
 end
