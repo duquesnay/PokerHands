@@ -1,6 +1,7 @@
 require "test/unit"
 require_relative "../lib/game"
 
+#noinspection RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention
 class PokerTest < Test::Unit::TestCase
 
   def setup
@@ -69,7 +70,7 @@ class PokerTest < Test::Unit::TestCase
     answer = @game.challenge big_high_card_hand, low_high_card_hand
 
     #T
-    assert_match( /white wins/, answer);
+    assert_match( /white wins/, answer)
   end
 
   def test_on_higher_card_when_no_pair_black_wins
@@ -81,6 +82,6 @@ class PokerTest < Test::Unit::TestCase
     answer = @game.challenge low_high_card_hand, big_high_card_hand
 
     #T
-    assert_match( /black wins/, answer);
+    assert_match( /black wins/, answer)
   end
 end

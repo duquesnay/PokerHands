@@ -25,6 +25,7 @@ class Deck < CardStack
       end
       previous = current_card
     }
+    #noinspection RubyUnnecessaryReturnStatement
     return
   end
 

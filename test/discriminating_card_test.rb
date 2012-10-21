@@ -1,6 +1,7 @@
 require "test/unit"
 require_relative '../lib/deck'
 
+#noinspection RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention
 class DiscriminatingCardTest < Test::Unit::TestCase
 
 

@@ -1,6 +1,7 @@
 require "test/unit"
 require_relative "../lib/deck"
 
+#noinspection RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention
 class DeckTest < Test::Unit::TestCase
 
   def test_pick_higher_pair

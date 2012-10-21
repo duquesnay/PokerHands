@@ -1,6 +1,7 @@
 require "test/unit"
 require_relative "../lib/value"
 
+#noinspection RubyInstanceMethodNamingConvention
 class ValueTest  < Test::Unit::TestCase
 
   def test_3_bigger_than_4

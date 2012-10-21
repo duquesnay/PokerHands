@@ -2,6 +2,7 @@ require "test/unit"
 require_relative "../lib/deck"
 require_relative "../lib/game"
 
+#noinspection RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention
 class PairResolutionTest < Test::Unit::TestCase
 
   def setup
@@ -63,10 +64,8 @@ class PairResolutionTest < Test::Unit::TestCase
 
   def test_no_resolution_when_pair_equal
     #G
-    big_cards = Deck.to_deck "4s 4d"
-    low_cards = Deck.to_deck "3s 3h"
-
-    pair_of_4 = Pair.new big_cards
+    pair_deck = Deck.to_deck "4s 4d"
+    pair_of_4 = Pair.new pair_deck
     #W
     result = pair_of_4.resolve_against_pair pair_of_4
 
