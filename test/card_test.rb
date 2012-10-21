@@ -2,6 +2,7 @@ require "test/unit"
 require_relative "../lib/card"
 require_relative "../lib/value"
 
+#noinspection RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention
 class CardTest < Test::Unit::TestCase
 
   def test_generate_card_from_2H()

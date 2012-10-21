@@ -51,11 +51,7 @@ class Card
   end
 
   def print_value
-    @value.name_one
-  end
-
-  def print_values
-    @value.name_many
+    @value.print_as_singular
   end
 
 end

@@ -13,7 +13,7 @@ class PairTest < Test::Unit::TestCase
     result = white_pair.compare_by_value black_pair
 
     #T
-    assert result > 0;
+    assert result > 0
   end
 
   def test_lower_by_value
@@ -25,7 +25,7 @@ class PairTest < Test::Unit::TestCase
     result = white_pair.compare_by_value black_pair
 
     #T
-    assert result < 0;
+    assert result < 0
   end
 
 end

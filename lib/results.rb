@@ -37,14 +37,14 @@ class PairResult
 end
 
 class KickerResolution
-  @high_card
+  @kicker
 
   def initialize (kicker_card)
-    @high_card = kicker_card
+    @kicker = kicker_card
   end
 
   def print_kicker
-    @high_card.print
+    @kicker.print_value
   end
 
   def print_resolution
@@ -56,8 +56,8 @@ end
 class HighCardResolution
   @high_card
 
-  def initialize (kicker_card)
-    @high_card = kicker_card
+  def initialize (winning_card)
+    @high_card = winning_card
   end
 
   def print_high_card

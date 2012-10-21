@@ -1,7 +1,6 @@
 require_relative 'deck'
-require_relative "hand"
 
-class Pair < Hand
+class Pair
 
   def initialize (paired_cards, kickers = Deck.new)
     @value = paired_cards[0].to_value
@@ -31,12 +30,8 @@ class Pair < Hand
     KickerResolution.new(my_kicker) if my_kicker
   end
 
-  def compare_to_value (value)
-    self.value <=> value
-  end
-
   def print
-    "a pair of #@value"
+    "a pair of #{@value.print_as_plural}"
   end
 
   protected
@@ -51,10 +46,6 @@ class Pair < Hand
   private
   def higher_hand_than?(challenger)
     !challenger.instance_of? Pair
-  end
-
-  def no_kicker_to_compare(challenging_kickers)
-    !@kickers && !challenging_kickers
   end
 
 end

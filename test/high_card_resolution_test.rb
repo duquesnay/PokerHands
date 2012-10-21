@@ -1,7 +1,8 @@
 require "test/unit"
 require_relative '../lib/game'
 
-class HighCardResolutionTest #< Test::Unit::TestCase
+#noinspection RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention
+class HighCardResolutionTest < Test::Unit::TestCase
 
   def setup
     @game = Game.new
@@ -16,7 +17,7 @@ class HighCardResolutionTest #< Test::Unit::TestCase
     answer = @game.challenge white, black
 
     #T
-    assert_match( /white wins/, answer);
+    assert_match( /white wins/, answer)
   end
 
   def test_white_wins_when_one_card_deck_is_king_against_queen()
@@ -28,10 +29,10 @@ class HighCardResolutionTest #< Test::Unit::TestCase
     answer = @game.challenge white, black
     #T
     #T
-    assert_match( /white wins/, answer);
+    assert_match( /white wins/, answer)
   end
 
-  def test_claim_winner_card_on_bigger_card
+  def test_high_card_print_properly
     #G
     white="kh ah 3s 2d 5s"
     black="ks 2s 4h 3h 5h"
@@ -41,6 +42,6 @@ class HighCardResolutionTest #< Test::Unit::TestCase
     answer = game.challenge white, black
     #T
     #T
-    assert_match(/^white wins - with high card : an ace$/, answer);
+    assert_match(/^white wins - with high card : an ace$/, answer)
   end
 end

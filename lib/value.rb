@@ -46,13 +46,13 @@ class Value
     !ALL_VALUES.include? value
   end
 
-  def name_one
+  def print_as_singular
     particle = (@sign == 'a' ? 'an' : 'a')
     name = NAMES[@sign]
     "#{particle} #{name}"
   end
 
-  def name_many
+  def print_as_plural
     plural = (@sign =~ /j|q|k|a/ ? 's' : '')
     name = NAMES[@sign]
     "#{name}#{plural}"

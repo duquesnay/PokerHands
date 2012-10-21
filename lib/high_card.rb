@@ -1,7 +1,6 @@
 require_relative "deck"
-require_relative "hand"
 
-class HighCard < Hand
+class HighCard
 
   def initialize (deck)
     @deck = deck

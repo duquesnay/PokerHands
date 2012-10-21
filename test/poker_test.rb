@@ -1,6 +1,7 @@
 require "test/unit"
 require_relative "../lib/game"
 
+#noinspection RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention
 class PokerTest < Test::Unit::TestCase
 
   def setup
@@ -24,7 +25,7 @@ class PokerTest < Test::Unit::TestCase
     end
   end
 
-  def _test_should_name_white_winner_when_first_wins
+  def test_should_name_white_winner_when_first_wins
     #G
     pair_of_4_string="kh 2h 4s 4d 5s"
     pair_of_3_string="ks 2s 3h 3h 5h"
@@ -36,7 +37,7 @@ class PokerTest < Test::Unit::TestCase
     assert_match /^white/, result
   end
 
-  def _test_should_name_black_winner_when_second_wins
+  def test_should_name_black_winner_when_second_wins
     #G
     pair_of_3_king_string="ks 2s 3h 3h 5h"
     pair_of_4_string="kh 2h 4s 4d 5s"
@@ -69,7 +70,7 @@ class PokerTest < Test::Unit::TestCase
     answer = @game.challenge big_high_card_hand, low_high_card_hand
 
     #T
-    assert_match( /white wins/, answer);
+    assert_match( /white wins/, answer)
   end
 
   def test_on_higher_card_when_no_pair_black_wins
@@ -81,6 +82,6 @@ class PokerTest < Test::Unit::TestCase
     answer = @game.challenge low_high_card_hand, big_high_card_hand
 
     #T
-    assert_match( /black wins/, answer);
+    assert_match( /black wins/, answer)
   end
 end
