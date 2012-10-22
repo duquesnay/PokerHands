@@ -38,21 +38,16 @@ class Pair
   end
 
   def resolve_by_kickers (challenging_pair)
-    challenging_kickers = challenging_pair.kickers
-
-    my_kicker = @kickers.search_discriminator challenging_kickers
-
+    my_kicker = challenging_pair.search_kicker_of @kickers
     KickerResolution.from_card(my_kicker) if my_kicker
+  end
+
+  def search_kicker_of( challenging_kickers )
+    challenging_kickers.search_discriminator @kickers
   end
 
   def print
     "a pair of #{@value.print_as_plural}"
-  end
-
-  protected
-
-  def kickers
-    @kickers
   end
 
   private

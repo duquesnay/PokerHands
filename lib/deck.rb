@@ -43,7 +43,7 @@ class Deck < CardStack
     HighCard.new self
   end
 
-  def self.to_deck deck_representation
+  def self.to_deck(deck_representation)
     symbols = deck_representation.split(' ')
 
     cards = symbols.collect { |symbol_card|

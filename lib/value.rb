@@ -9,7 +9,6 @@ class Value
   QUEEN_SYMBOL = "q"
   JACK_SYMBOL = "j"
   TEN_SYMBOL = "t"
-  TEN_SYMBOL = "t"
   NAMES = {
       ACE_SYMBOL => "ace",
       KING_SYMBOL => "king",
@@ -32,7 +31,7 @@ class Value
   end
 
   def to_s
-    @sign
+    @sign.to_s
   end
 
   def <=> (another_value)

@@ -5,13 +5,10 @@ class Card
   @value
   @color
 
-  def initialize(value, color)
-    @color = Color.new color
-    @value = Value.new value
-  end
-
   def self::to_card(representation)
-    return Card.new representation[0], representation[1]
+    value = Value.new(representation[0])
+    color = Color.new(representation[1])
+    return Card.new(value, color)
   end
 
   def print_color
@@ -43,15 +40,20 @@ class Card
   end
 
   def compare_strength(card)
-    -card.compare_to_value(@value)
+    card.compare_value_to_me(@value)
   end
 
-  def compare_to_value(v)
-    @value.compare_to_v(v)
+  def compare_value_to_me(challenging_value)
+    challenging_value.compare_to_v @value
   end
 
   def print_value
     @value.print_as_singular
+  end
+
+  private
+  def initialize(value, color)
+    @value, @color = value, color
   end
 
 end
