@@ -9,12 +9,13 @@ class Value
   QUEEN_SYMBOL = "q"
   JACK_SYMBOL = "j"
   TEN_SYMBOL = "t"
+  TEN_SYMBOL = "t"
   NAMES = {
       ACE_SYMBOL => "ace",
       KING_SYMBOL => "king",
       QUEEN_SYMBOL => "queen",
       JACK_SYMBOL => "jack",
-      "10" => "10",
+      TEN_SYMBOL => "10",
       "9" => "9",
       "8" => "8",
       "7" => "7",
@@ -26,7 +27,7 @@ class Value
   }
 
   def initialize(sign)
-    raise "unknown value "+sign if Value::is_sign(sign)
+    raise "unknown value "+sign if Value.is_sign(sign)
     @sign = sign
   end
 
@@ -35,15 +36,19 @@ class Value
   end
 
   def <=> (another_value)
-    Value::ALL_VALUES.index(sign) - Value::ALL_VALUES.index(another_value.sign)
+    another_value.compare_rank_to_me value_rank()
+  end
+
+  def compare_rank_to_me(another_rank)
+    another_rank - value_rank()
+  end
+
+  def value_rank
+    ALL_VALUES.index(@sign)
   end
 
   def compare_to_v(v)
     self <=> v
-  end
-
-  def self.is_sign(value)
-    !ALL_VALUES.include? value
   end
 
   def print_as_singular
@@ -58,10 +63,10 @@ class Value
     "#{name}#{plural}"
   end
 
-  protected
-  def sign
-    @sign
+  def self.is_sign(value)
+    !ALL_VALUES.include? value
   end
+
 end
 
 

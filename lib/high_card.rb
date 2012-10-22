@@ -7,18 +7,12 @@ class HighCard
   end
 
   def resolve_against (challenged_hand)
-    winning_card = search_discriminator challenged_hand
-    HighCardResolution.new winning_card if winning_card
+    winning_card = challenged_hand.search_discriminator_of @deck
+    HighCardResolution.from_card winning_card if winning_card
   end
 
-  def search_discriminator (challenged_hand)
-    challenged_deck = challenged_hand.to_deck
-    @deck.search_discriminator challenged_deck
-  end
-
-  protected
-  def to_deck
-    @deck.clone
+  def search_discriminator_of (challenging_deck)
+    challenging_deck.search_discriminator @deck
   end
 
 end

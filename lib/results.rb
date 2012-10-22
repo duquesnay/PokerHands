@@ -20,11 +20,11 @@ class WinnerResult
   end
 end
 
-class PairResult
+class PairResolution
   @pair
 
-  def initialize (winner_pair)
-    @pair = winner_pair
+  def self.from_pair (winner_pair)
+    PairResolution.new winner_pair
   end
 
   def print_pair
@@ -34,13 +34,18 @@ class PairResult
   def print_resolution
     "with #{print_pair}"
   end
+
+  private
+  def initialize (winner_pair)
+    @pair = winner_pair
+  end
 end
 
 class KickerResolution
   @kicker
 
-  def initialize (kicker_card)
-    @kicker = kicker_card
+  def self.from_card(kicker_card)
+    KickerResolution.new kicker_card
   end
 
   def print_kicker
@@ -51,13 +56,18 @@ class KickerResolution
     "by kicker as #{print_kicker}"
   end
 
+  private
+  def initialize (kicker_card)
+    @kicker = kicker_card
+  end
+
 end
 
 class HighCardResolution
   @high_card
 
-  def initialize (winning_card)
-    @high_card = winning_card
+  def self.from_card( winning_card )
+    HighCardResolution.new winning_card
   end
 
   def print_high_card
@@ -66,5 +76,10 @@ class HighCardResolution
 
   def print_resolution
     "with high card : #{print_high_card}"
+  end
+
+  private
+  def initialize (winning_card)
+    @high_card = winning_card
   end
 end

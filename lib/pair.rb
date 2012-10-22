@@ -8,18 +8,33 @@ class Pair
   end
 
   def resolve_against (challenger)
-    return PairResult.new self if higher_hand_than?(challenger)
+    return to_winning_resolution if not_a_pair?(challenger)
+
     resolve_against_pair challenger
   end
 
-  def resolve_against_pair (challenging_pair)
-    value_resolution = compare_by_value challenging_pair
-    return PairResult.new(self) if value_resolution > 0
-    resolve_by_kickers challenging_pair if value_resolution == 0
+  def to_winning_resolution
+    PairResolution.from_pair self
   end
 
-  def compare_by_value (challenging_pair)
-    @value <=> challenging_pair.value
+  EQUALITY_COMPARISON = 0
+
+  def resolve_against_pair (challenging_pair)
+    value_resolution = challenging_pair.compare_value_to_me(@value)
+    return to_winning_resolution if means_bigger(value_resolution)
+    resolve_by_kickers challenging_pair if means_equality(value_resolution)
+  end
+
+  def means_bigger(value_resolution)
+    value_resolution > 0
+  end
+
+  def means_equality(value_resolution)
+    value_resolution == EQUALITY_COMPARISON
+  end
+
+  def compare_value_to_me (challenging_value)
+    challenging_value <=> @value
   end
 
   def resolve_by_kickers (challenging_pair)
@@ -27,7 +42,7 @@ class Pair
 
     my_kicker = @kickers.search_discriminator challenging_kickers
 
-    KickerResolution.new(my_kicker) if my_kicker
+    KickerResolution.from_card(my_kicker) if my_kicker
   end
 
   def print
@@ -35,16 +50,13 @@ class Pair
   end
 
   protected
-  def value
-    @value
-  end
 
   def kickers
     @kickers
   end
 
   private
-  def higher_hand_than?(challenger)
+  def not_a_pair?(challenger)
     !challenger.instance_of? Pair
   end
 
