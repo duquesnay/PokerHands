@@ -2,26 +2,20 @@ class CardStack
   @cards
 
   def initialize(cards=[])
-    @cards = []
-    cards.each {
-        |card| @cards<<card
-    }
+    @cards = Array.new cards
     ensure_order
   end
 
-  def [](stuff)
-    expected_result = @cards[stuff]
-    return Deck.new(expected_result) if expected_result.instance_of? Array
-    expected_result
+  def enumerate_cards
+    @cards.each
   end
 
   def search_discriminator (card_stack)
-    discriminator_index = (0..(@cards.length-1)).find { |i|
-      card = @cards[i]
-      challenger_card = card_stack[i]
-      card.stronger_than? challenger_card
+    challengers_enumerator = card_stack.enumerate_cards
+    @cards.find{ |card|
+      challenger = challengers_enumerator.next
+      card.stronger_than? challenger
     }
-    @cards[discriminator_index] if discriminator_index
   end
 
   private
