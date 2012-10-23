@@ -4,28 +4,58 @@ require_relative "../lib/deck"
 
 class PairTest < Test::Unit::TestCase
 
-  def test_greater_than_value
+  VALUE_2 = Value.new "2"
+  VALUE_4 = Value.new "4"
+
+  PAIR_OF_2 = Pair.new ([(Card.to_card "2s"), (Card.to_card "2d")])
+  PAIR_OF_4 = Pair.new ([(Card.to_card "4s"), (Card.to_card "4d")])
+
+  def test_same_value_as
     #G
-    white_pair = Pair.new ([(Card.to_card "4s"), (Card.to_card "4d")])
-    black_value = Value.new "2"# Pair.new ([(Card.to_card "2s"), (Card.to_card "2d")])
+    white_pair = PAIR_OF_4
+    black_value = VALUE_2
 
     #W
-    result = white_pair.compare_value_to_me black_value
+    result = white_pair.as_strong_as? black_value
 
     #T
-    assert result < 0
+    assert_false result
+  end
+
+  def test_not_same_value_as
+    #G
+    white_pair = PAIR_OF_4
+    black_value = VALUE_4
+
+    #W
+    result = white_pair.as_strong_as? black_value
+
+    #T
+    assert result
   end
 
   def test_lower_than_value
     #G
-    white_pair = Pair.new ([(Card.to_card "2s"), (Card.to_card "2d")])
-    black_value = Value.new "4"
+    white_pair = PAIR_OF_2
+    black_value = VALUE_4
 
     #W
-    result = white_pair.compare_value_to_me black_value
+    result = white_pair.weakier_than? black_value
 
     #T
-    assert result > 0
+    assert result
+  end
+
+  def test_not_lower_than_value
+    #G
+    white_pair = PAIR_OF_2
+    black_value = VALUE_2
+
+    #W
+    result = white_pair.weakier_than? black_value
+
+    #T
+    assert_false result
   end
 
 end

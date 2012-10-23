@@ -2,6 +2,10 @@ require "test/unit"
 require_relative "../lib/deck"
 require_relative "../lib/game"
 
+class Pair
+  public :resolve_against_pair, :search_kicker_of
+end
+
 #noinspection RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention
 class PairResolutionTest < Test::Unit::TestCase
 

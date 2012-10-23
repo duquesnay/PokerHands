@@ -8,33 +8,26 @@ class Pair
   end
 
   def resolve_against (challenger)
-    return to_winning_resolution if not_a_pair?(challenger)
-
+    return generate_win if not_a_pair?(challenger)
     resolve_against_pair challenger
   end
 
-  def to_winning_resolution
-    PairResolution.from_pair self
+  def weakier_than?( value )
+    @value < value
   end
 
-  EQUALITY_COMPARISON = 0
+  def as_strong_as?( value )
+    @value == value
+  end
 
+  def print
+    "a pair of #{@value.print_as_plural}"
+  end
+
+  private
   def resolve_against_pair (challenging_pair)
-    value_resolution = challenging_pair.compare_value_to_me(@value)
-    return to_winning_resolution if means_bigger(value_resolution)
-    resolve_by_kickers challenging_pair if means_equality(value_resolution)
-  end
-
-  def means_bigger(value_resolution)
-    value_resolution > 0
-  end
-
-  def means_equality(value_resolution)
-    value_resolution == EQUALITY_COMPARISON
-  end
-
-  def compare_value_to_me (challenging_value)
-    challenging_value <=> @value
+    return generate_win if challenging_pair.weakier_than?( @value )
+    resolve_by_kickers challenging_pair if challenging_pair.as_strong_as?( @value )
   end
 
   def resolve_by_kickers (challenging_pair)
@@ -46,11 +39,10 @@ class Pair
     challenging_kickers.search_discriminator @kickers
   end
 
-  def print
-    "a pair of #{@value.print_as_plural}"
+  def generate_win
+    PairResolution.from_pair self
   end
 
-  private
   def not_a_pair?(challenger)
     !challenger.instance_of? Pair
   end
