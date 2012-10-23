@@ -15,14 +15,13 @@ class CardStack
     expected_result
   end
 
-  def each
-    @cards.each { |card| yield card }
-  end
-
-  def -(deck_to_substract)
-    remaining_cards = @cards.clone
-    deck_to_substract.each{ |card_to_remove| remaining_cards.delete card_to_remove}
-    Deck.new remaining_cards
+  def search_discriminator (card_stack)
+    discriminator_index = (0..(@cards.length-1)).find { |i|
+      card = @cards[i]
+      challenger_card = card_stack[i]
+      card.stronger_than? challenger_card
+    }
+    @cards[discriminator_index] if discriminator_index
   end
 
   private

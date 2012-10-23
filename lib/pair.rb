@@ -16,7 +16,7 @@ class Pair
     @value < value
   end
 
-  def as_strong_as?( value )
+  def same_value?( value )
     @value == value
   end
 
@@ -27,7 +27,7 @@ class Pair
   private
   def resolve_against_pair (challenging_pair)
     return generate_win if challenging_pair.weakier_than?( @value )
-    resolve_by_kickers challenging_pair if challenging_pair.as_strong_as?( @value )
+    resolve_by_kickers challenging_pair if challenging_pair.same_value?( @value )
   end
 
   def resolve_by_kickers (challenging_pair)

@@ -16,7 +16,7 @@ class PairTest < Test::Unit::TestCase
     black_value = VALUE_2
 
     #W
-    result = white_pair.as_strong_as? black_value
+    result = white_pair.same_value? black_value
 
     #T
     assert_false result
@@ -28,7 +28,7 @@ class PairTest < Test::Unit::TestCase
     black_value = VALUE_4
 
     #W
-    result = white_pair.as_strong_as? black_value
+    result = white_pair.same_value? black_value
 
     #T
     assert result
