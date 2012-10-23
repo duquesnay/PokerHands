@@ -32,7 +32,7 @@ class Deck < CardStack
   def generate_pair_from(gemel_card_1, gemel_card_2)
     pair_cards = Deck.new [gemel_card_2, gemel_card_1]
     kickers = self - pair_cards
-    Pair.new pair_cards, kickers
+    gemel_card_1.wrap_to_pair( kickers )
   end
 
   def search_best_hand

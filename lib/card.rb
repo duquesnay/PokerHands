@@ -23,19 +23,19 @@ class Card
     print
   end
 
-  def to_value
-    @value.clone
+  def wrap_to_pair( kickers )
+    Pair.new( @value, kickers )
   end
 
-  def as_strong_as(card)
-    (compare_strength card) == 0
+  def as_strong_as(challenger_card)
+    (compare_strength challenger_card) == 0
   end
 
-  def stronger_than(card)
-    (compare_strength card) > 0
+  def stronger_than(challenger_card)
+    (compare_strength challenger_card) > 0
   end
 
-  def weaker_than (challenger_card)
+  def weaker_than(challenger_card)
     (compare_strength challenger_card) < 0
   end
 
@@ -43,12 +43,13 @@ class Card
     card.compare_value_to_me(@value)
   end
 
-  def compare_value_to_me(challenging_value)
-    challenging_value.compare_to_v @value
-  end
-
   def print_value
     @value.print_as_singular
+  end
+
+  protected
+  def compare_value_to_me(challenging_value)
+    challenging_value.compare_to_v @value
   end
 
   private

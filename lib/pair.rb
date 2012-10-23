@@ -2,8 +2,8 @@ require_relative 'deck'
 
 class Pair
 
-  def initialize (paired_cards, kickers = Deck.new)
-    @value = paired_cards[0].to_value
+  def initialize (value, kickers = Deck.new)
+    @value = value
     @kickers = kickers
   end
 

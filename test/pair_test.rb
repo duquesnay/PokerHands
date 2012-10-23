@@ -7,10 +7,10 @@ class PairTest < Test::Unit::TestCase
   VALUE_2 = Value.new "2"
   VALUE_4 = Value.new "4"
 
-  PAIR_OF_2 = Pair.new ([(Card.to_card "2s"), (Card.to_card "2d")])
-  PAIR_OF_4 = Pair.new ([(Card.to_card "4s"), (Card.to_card "4d")])
+  PAIR_OF_2 = Pair.new VALUE_2 #([(Card.to_card "2s"), (Card.to_card "2d")])
+  PAIR_OF_4 = Pair.new VALUE_4 #([(Card.to_card "4s"), (Card.to_card "4d")])
 
-  def test_same_value_as
+  def test_not_same_value_as
     #G
     white_pair = PAIR_OF_4
     black_value = VALUE_2
@@ -22,7 +22,7 @@ class PairTest < Test::Unit::TestCase
     assert_false result
   end
 
-  def test_not_same_value_as
+  def test_same_value_as
     #G
     white_pair = PAIR_OF_4
     black_value = VALUE_4
@@ -34,7 +34,7 @@ class PairTest < Test::Unit::TestCase
     assert result
   end
 
-  def test_lower_than_value
+  def test_weakier_than_value
     #G
     white_pair = PAIR_OF_2
     black_value = VALUE_4
