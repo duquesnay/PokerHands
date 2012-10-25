@@ -3,18 +3,25 @@ require_relative "results"
 require_relative "pair"
 require_relative "card_stack"
 require_relative "high_card"
+require_relative "doublets_enumerator"
+require_relative "deck_interpreter"
 
 class Deck < CardStack
 
+  def search_best_hand
+    search_first_pair || to_high_card
+  end
+
   def search_first_pair
-    return if count_card < 2
-    previous = @cards[0]
-    @cards[1..-1].each { |current_card|
-      return generate_pair_from(current_card) if current_card.same_value? previous
-      previous = current_card
+    DoubletsEnumerator.each_pair_of(self) { |left_card, right_card|
+      return generate_pair_from(left_card) if are_pair?(left_card, right_card)
     }
     #noinspection RubyUnnecessaryReturnStatement
     return
+  end
+
+  def are_pair?(left_card, right_card)
+    left_card.same_value? right_card
   end
 
   def generate_pair_from(sample_card)
@@ -23,29 +30,17 @@ class Deck < CardStack
   end
 
   def extract_kickers(sample_pair_card)
-    remaining_cards = @cards.reject { |card| card.same_value? sample_pair_card }
+    remaining_cards = reject_cards_like(sample_pair_card)
     self.class.new remaining_cards
-  end
-
-  def search_best_hand
-    search_first_pair || to_high_card
   end
 
   def to_high_card
     HighCard.new self
   end
 
-  def self.to_deck(deck_representation)
-    symbols = deck_representation.split(' ')
-
-    cards = symbols.collect { |symbol_card|
-      Card.to_card(symbol_card)
-    }
-    Deck.new cards
-  end
-
-  def to_s
-    @cards.join " "
+  private
+  def reject_cards_like(sample_pair_card)
+    @cards.reject { |card| are_pair?(card, sample_pair_card) }
   end
 
 end

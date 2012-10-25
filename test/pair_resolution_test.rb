@@ -73,8 +73,8 @@ class PairResolutionTest < Test::Unit::TestCase
   def test_no_resolution_when_lower_kicker_and_pair_equality
     #G
     pair_value = VALUE_4
-    bigger_kicker = Deck.to_deck "kh"
-    lower_kicker = Deck.to_deck "qs"
+    bigger_kicker = DeckInterpreter.to_deck "kh"
+    lower_kicker = DeckInterpreter.to_deck "qs"
 
     hand_of_big_kicker = Pair.new pair_value, bigger_kicker
     hand_of_lower_kicker = Pair.new pair_value, lower_kicker
@@ -88,7 +88,7 @@ class PairResolutionTest < Test::Unit::TestCase
   def test_no_resolution_when_same_kicker_same_pair
     #G
     pair = VALUE_4
-    kicker = Deck.to_deck "kh"
+    kicker = DeckInterpreter.to_deck "kh"
 
     a_hand = Pair.new pair, kicker
     same_hand = Pair.new pair, kicker
@@ -102,8 +102,8 @@ class PairResolutionTest < Test::Unit::TestCase
   def test_resolve_by_big_kicker_when_pair_equality
     #G
     pair_value = VALUE_4
-    bigger_kicker = Deck.to_deck "kh"
-    lower_kicker = Deck.to_deck "qs"
+    bigger_kicker = DeckInterpreter.to_deck "kh"
+    lower_kicker = DeckInterpreter.to_deck "qs"
 
     hand_of_big_kicker = Pair.new pair_value, bigger_kicker
     hand_of_lower_kicker = Pair.new pair_value, lower_kicker
@@ -117,8 +117,8 @@ class PairResolutionTest < Test::Unit::TestCase
   def test_resolve_by_big_kicker_tells_it_properly
     #G
     pair_value = VALUE_4
-    bigger_kicker = Deck.to_deck "kh"
-    lower_kicker = Deck.to_deck "qs"
+    bigger_kicker = DeckInterpreter.to_deck "kh"
+    lower_kicker = DeckInterpreter.to_deck "qs"
 
     hand_of_big_kicker = Pair.new pair_value, bigger_kicker
     hand_of_lower_kicker = Pair.new pair_value, lower_kicker

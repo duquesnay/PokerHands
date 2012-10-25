@@ -1,9 +1,9 @@
 class Value
   include Comparable
 
-  ALL_VALUES = "23456789tjqka"
   @sign
 
+  ALL_VALUES = "23456789tjqka"
   ACE_SYMBOL = "a"
   KING_SYMBOL = "k"
   QUEEN_SYMBOL = "q"
@@ -44,10 +44,6 @@ class Value
 
   def value_rank
     ALL_VALUES.index(@sign)
-  end
-
-  def compare_to_v(v)
-    self <=> v
   end
 
   def print_as_singular

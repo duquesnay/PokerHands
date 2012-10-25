@@ -34,12 +34,12 @@ class Game
   end
 
   def register_black_from(deck_representation)
-    player_deck = Deck.to_deck deck_representation
+    player_deck = DeckInterpreter.to_deck deck_representation
     @black = Player.new BLACK_NAME, player_deck
   end
 
   def register_white_from(deck_representation)
-    player_deck = Deck.to_deck deck_representation
+    player_deck = DeckInterpreter.to_deck deck_representation
     @white = Player.new WHITE_NAME, player_deck
   end
 

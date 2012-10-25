@@ -5,10 +5,10 @@ require_relative "../lib/value"
 #noinspection RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention,RubyInstanceMethodNamingConvention
 class CardTest < Test::Unit::TestCase
 
-  def test_generate_card_from_2H()
+  def test_generate_card_from_3H()
     card = Card.to_card("3h")
     assert_match(/3/, card.print_value)
-    assert_match(/heart/, card.print_color)
+    assert_match(/3h/, card.print)
   end
 
   def test_fire_if_unknown_value_when_creating_card
@@ -65,12 +65,12 @@ class CardTest < Test::Unit::TestCase
 
   def test_different_color_same_value_gives_equality()
     #G
-    big_card = Card.to_card("3h")
-    low_card = Card.to_card("3s")
-    assert(!low_card.weaker_than?(big_card), "found card #{low_card} < #{big_card}")
-    assert(!low_card.stronger_than?(big_card), "found card #{low_card} > #{big_card}")
+    left_card = Card.to_card("3h")
+    right_card = Card.to_card("3s")
+    assert(!left_card.stronger_than?(right_card), "found card #{left_card} W #{right_card}")
+    assert(!right_card.stronger_than?(left_card), "found card #{right_card} > #{left_card}")
     #T
-    assert(low_card.same_value?(big_card), "found card #{low_card} != #{big_card}")
+    assert(right_card.same_value?(left_card), "found card #{right_card} != #{left_card}")
   end
 
 

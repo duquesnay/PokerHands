@@ -6,26 +6,26 @@ class CardStack
     ensure_order
   end
 
-  def enumerate_cards
+  def each
     @cards.each
   end
 
   def search_discriminator (card_stack)
-    challengers_enumerator = card_stack.enumerate_cards
+    challengers_enumerator = card_stack.each
     @cards.find{ |card|
       challenger = challengers_enumerator.next
       card.stronger_than? challenger
     }
   end
 
+  def to_s
+    @cards.join " "
+  end
+
   private
   def ensure_order
     @cards.sort!{ |a,b| a.compare_strength b }
     @cards.reverse!
-  end
-
-  def count_card
-    @cards.length
   end
 
 end

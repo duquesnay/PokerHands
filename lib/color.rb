@@ -17,10 +17,6 @@ class Color
     ALL_COLOR_SYMBOLS.include? color_symbol
   end
 
-  def print
-    COLOR_NAMES[@symbol]
-  end
-
   def to_s
     @symbol
   end

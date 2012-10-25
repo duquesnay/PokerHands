@@ -7,8 +7,8 @@ class DiscriminatingCardTest < Test::Unit::TestCase
 
   def test_find_kicker_when_first
     # G
-    white_deck = Deck.to_deck("qs")
-    black_deck = Deck.to_deck("5h")
+    white_deck = DeckInterpreter.to_deck "qs"
+    black_deck = DeckInterpreter.to_deck "5h"
 
     #W
     result = white_deck.search_discriminator black_deck
@@ -19,8 +19,8 @@ class DiscriminatingCardTest < Test::Unit::TestCase
 
   def test_find_proper_kicker_when_first
     # G
-    white_deck = Deck.to_deck("qs")
-    black_deck = Deck.to_deck("5h")
+    white_deck = DeckInterpreter.to_deck "qs"
+    black_deck = DeckInterpreter.to_deck "5h"
 
     #W
     result = white_deck.search_discriminator black_deck
@@ -31,8 +31,8 @@ class DiscriminatingCardTest < Test::Unit::TestCase
 
   def test_find_proper_kicker_when_second
     # G
-    white_deck = Deck.to_deck("kh qs")
-    black_deck = Deck.to_deck("ks 5h")
+    white_deck = DeckInterpreter.to_deck "kh qs"
+    black_deck = DeckInterpreter.to_deck "ks 5h"
 
     #W
     result = white_deck.search_discriminator black_deck

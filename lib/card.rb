@@ -1,18 +1,13 @@
 require_relative "value"
 require_relative "color"
+require_relative "deck_interpreter"
 
 class Card
   @value
   @color
 
   def self::to_card(representation)
-    value = Value.new(representation[0])
-    color = Color.new(representation[1])
-    return Card.new(value, color)
-  end
-
-  def print_color
-    @color.print
+    DeckInterpreter.to_card representation
   end
 
   def print
@@ -35,10 +30,6 @@ class Card
     (compare_strength challenger_card) > 0
   end
 
-  def weaker_than?(challenger_card)
-    (compare_strength challenger_card) < 0
-  end
-
   def compare_strength(card)
     card.compare_value_to_me(@value)
   end
@@ -47,9 +38,8 @@ class Card
     @value.print_as_singular
   end
 
-  protected
   def compare_value_to_me(challenging_value)
-    challenging_value.compare_to_v @value
+    challenging_value <=> @value
   end
 
   private
