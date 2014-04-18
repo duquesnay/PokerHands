@@ -11,12 +11,12 @@ How to use
 
 State
 -----
--> done until 2 pairs comparison
--> no proper makefile and stuff so far, tests running in rubymine
+- done until 2 pairs comparison
+- no proper makefile and stuff so far, tests running in rubymine
 
 Sources
 -------
-- Kata is here : http://www.codingdojo.org/cgi-bin/index.pl?KataPokerHands #devoxxfr2014
+- Kata is here : http://www.codingdojo.org/cgi-bin/index.pl?KataPokerHands
 - Object Callisthenics rules :
 	1.	Use only one level of indentation per method
 	2.	Don’t use the else keyword
