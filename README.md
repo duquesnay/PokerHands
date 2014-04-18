@@ -6,13 +6,14 @@ PokerHands kata on Ruby (1.9), trying to follow strictly Object Calisthenics rul
 How to use
 ----------
 - TDD is mandatory : write 1 test -> make the code pass -> refactor
-- don't cheat with the rules spirit. def not_a_get(){ return @value } is a getter, no matter how it is named
+- don't cheat with the rules spirit. def notaget(){ return @value } is a getter, no matter how it is named
 - have all rules applied, otherwise you don't get the juice of the exercice
 
 State
 -----
 - done until 2 pairs comparison
 - no proper makefile and stuff so far, tests running in rubymine
+- I know, some rules are violated this and there
 
 Sources
 -------
